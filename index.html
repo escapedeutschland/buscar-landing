@@ -89,6 +89,9 @@
   .store-btn.dim{filter:opacity(.68)}
   .store-btn.primary{transform:scale(1.04)}
   .store-btn.soon{filter:grayscale(.5);opacity:.6;pointer-events:none;cursor:default;box-shadow:none}
+  .webapp-btn{display:inline-flex;align-items:center;gap:8px;margin-top:4px;background:var(--yellow);color:#fff;font-weight:700;font-size:14px;padding:12px 22px;border-radius:14px;text-decoration:none;box-shadow:0 6px 18px rgba(245,166,35,.32);transition:transform .15s}
+  .webapp-btn:active{transform:scale(.97)}
+  .webapp-btn svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
   .badge-note{font-size:11.5px;color:var(--text-3);margin-top:14px}
 
   footer{text-align:center;margin-top:30px;font-size:12px;color:var(--text-3)}
@@ -156,7 +159,11 @@
         <span class="txt"><small data-i18n="gp_small">Jetzt bei</small><b>Google Play</b></span>
       </a>
     </div>
-    <div class="badge-note" data-i18n="note">Wähle deinen Store – beide sind kostenlos.</div>
+    <a class="webapp-btn" href="/app">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20z"/></svg>
+      <span data-i18n="webapp">Im Browser öffnen – Android &amp; Desktop</span>
+    </a>
+    <div class="badge-note" data-i18n="note">Kostenlos – iPhone, Android folgt bald oder direkt im Browser.</div>
   </section>
 
   <footer>
@@ -221,14 +228,16 @@
         biz_head:'Du hast ein Lokal oder Unternehmen?', biz_sub:'Mach es sichtbar – kostenlos.',
         dl_title:'Jetzt herunterladen', dl_sub:'Jetzt kostenlos für iPhone – Android folgt bald',
         as_small:'Laden im', gp_small:'Bald verfügbar',
-        note:'Wähle deinen Store – beide sind kostenlos.', privacy:'Datenschutz'},
+        webapp:'Im Browser öffnen – Android & Desktop',
+        note:'Kostenlos – iPhone, Android folgt bald oder direkt im Browser.', privacy:'Datenschutz'},
     es:{tagline:'Descubre Paraguay – lugares, eventos y ofertas',
         lead:'Encuentra todo en Paraguay – y haz visible tu local, tus eventos y ofertas.',
         cta:'Descargar', sec_title:'Lo que Buscar te ofrece', biz_tag:'Para empresas',
         biz_head:'¿Tienes un local o negocio?', biz_sub:'Hazlo visible – gratis.',
         dl_title:'Descárgala ahora', dl_sub:'Gratis para iPhone – Android muy pronto',
         as_small:'Descárgalo en', gp_small:'Próximamente',
-        note:'Elige tu tienda – ambas son gratis.', privacy:'Privacidad'}
+        webapp:'Abrir en el navegador – Android y Desktop',
+        note:'Gratis – iPhone, Android muy pronto o directo en el navegador.', privacy:'Privacidad'}
   };
 
   function renderGrid(l){
