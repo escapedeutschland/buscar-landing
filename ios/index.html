@@ -35,30 +35,31 @@
   var ua=navigator.userAgent||"";
   var isTikTok=/TikTok|musical_ly|BytedanceWebview|Bytedance/i.test(ua);
   var inApp=isTikTok || /Instagram|FBAN|FBAV|FB_IAB|Line\/|Snapchat|Pinterest/i.test(ua);
-  var es=(navigator.language||"de").toLowerCase().indexOf("es")===0;
+  var params=new URLSearchParams(location.search);
+  var pl=(params.get('lang')||"").toLowerCase();
+  var es = pl ? (pl==='es') : (navigator.language||"de").toLowerCase().indexOf("es")===0;
+  document.documentElement.lang = es ? "es" : "de";
   var open=document.getElementById('open'), copy=document.getElementById('copy'),
       msg=document.getElementById('msg'), steps=document.getElementById('steps'), copied=document.getElementById('copied');
   open.href=HTTPS; if(es) open.textContent="Abrir en el App Store";
 
   if(isTikTok){
-    // TikTok kann den App Store NICHT oeffnen -> kein Store-Button, nur Anleitung + Kopieren
     open.style.display='none';
     msg.innerHTML = es
-      ? "<b>Ya casi!</b> TikTok no puede abrir el App Store."
+      ? "<b>¡Ya casi!</b> TikTok no puede abrir el App Store."
       : "<b>Fast geschafft!</b> TikTok kann den App Store nicht öffnen.";
     steps.style.display='block';
     steps.innerHTML = es
-      ? "<ol><li>Toca arriba a la derecha en <b>•••</b></li><li>Elige <b>«Abrir en navegador / Safari»</b></li><li>Listo: ahí se abre el App Store</li></ol>"
+      ? "<ol><li>Toca arriba a la derecha en <b>•••</b></li><li>Elige <b>«Abrir en el navegador / Safari»</b></li><li>Listo: ahí se abre el App Store</li></ol>"
       : "<ol><li>Tippe oben rechts auf <b>•••</b></li><li>Wähle <b>„Im Browser öffnen / Safari“</b></li><li>Fertig – dort öffnet der App Store</li></ol>";
     copy.style.display='inline-block';
-    if(es) copy.textContent="Copiar enlace";
+    copy.textContent = es ? "Copiar enlace" : "Link kopieren";
     copy.addEventListener('click', function(){
       var done=function(){ copied.textContent = es?"¡Copiado! Pégalo en Safari.":"Kopiert! In Safari einfügen."; };
       try{ navigator.clipboard.writeText(HTTPS).then(done, function(){ window.prompt(es?"Copia este enlace:":"Diesen Link kopieren:", HTTPS); }); }
       catch(e){ window.prompt(es?"Copia este enlace:":"Diesen Link kopieren:", HTTPS); }
     });
   } else if(inApp){
-    // Instagram/FB oeffnen den Store ueber https problemlos
     msg.textContent = es ? "Toca el botón para abrir el App Store." : "Tippe auf den Button, um den App Store zu öffnen.";
   } else {
     location.replace(HTTPS);
