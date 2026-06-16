@@ -3,17 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <title>Buscar – App Store</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:-apple-system,'DM Sans',sans-serif;background:linear-gradient(160deg,#F5A623,#B8661A);color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:26px}
-  .card{max-width:370px}
-  .ic{width:84px;height:84px;border-radius:22px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
-  .ic svg{width:44px;height:44px}
-  h1{font-size:30px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
-  p{font-size:15px;opacity:.96;line-height:1.5;margin-bottom:18px}
-  .btn{display:inline-block;background:#fff;color:#B8661A;font-weight:700;font-size:16px;padding:14px 26px;border-radius:14px;text-decoration:none;box-shadow:0 8px 22px rgba(0,0,0,.2)}
-  .hint{display:none;font-size:14px;opacity:.96;margin-top:20px;background:rgba(0,0,0,.18);padding:14px 16px;border-radius:12px;line-height:1.55}
+  body{font-family:-apple-system,'DM Sans',sans-serif;background:linear-gradient(160deg,#F5A623,#B8661A);color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px}
+  .card{max-width:380px;width:100%}
+  .ic{width:80px;height:80px;border-radius:21px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+  .ic svg{width:42px;height:42px}
+  h1{font-size:28px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
+  p{font-size:15px;opacity:.96;line-height:1.5;margin-bottom:16px}
+  .btn{display:inline-block;background:#fff;color:#B8661A;font-weight:700;font-size:16px;padding:14px 26px;border-radius:14px;text-decoration:none;border:none;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.2)}
+  .steps{display:none;text-align:left;background:rgba(0,0,0,.18);border-radius:14px;padding:16px 18px;margin:6px 0 16px}
+  .steps b{color:#fff}
+  .steps ol{margin:0;padding-left:20px;line-height:1.9;font-size:15px}
+  #copied{display:block;height:18px;font-size:13px;opacity:.9;margin-top:10px}
 </style>
 </head>
 <body>
@@ -21,8 +25,10 @@
   <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><circle cx="10" cy="10" r="7"/><line x1="15" y1="15" x2="21" y2="21"/></svg></div>
   <h1>Buscar</h1>
   <p id="msg">App Store wird geöffnet…</p>
+  <div class="steps" id="steps"></div>
   <a class="btn" id="open" href="https://apps.apple.com/app/id6770427542">Im App Store öffnen</a>
-  <p class="hint" id="hint"></p>
+  <button class="btn" id="copy" style="display:none">Link kopieren</button>
+  <span id="copied"></span>
 </div>
 <script>
   var HTTPS="https://apps.apple.com/app/id6770427542";
@@ -30,21 +36,30 @@
   var isTikTok=/TikTok|musical_ly|BytedanceWebview|Bytedance/i.test(ua);
   var inApp=isTikTok || /Instagram|FBAN|FBAV|FB_IAB|Line\/|Snapchat|Pinterest/i.test(ua);
   var es=(navigator.language||"de").toLowerCase().indexOf("es")===0;
-  var open=document.getElementById('open'), msg=document.getElementById('msg'), hint=document.getElementById('hint');
-  open.href = HTTPS;
-  if(es) open.textContent="Abrir en el App Store";
-  if(inApp){
-    hint.style.display='block';
-    hint.innerHTML = es
-      ? "Toca arriba a la derecha en <b>•••</b> (o Compartir) y elige <b>«Abrir en Safari»</b>, luego abre el botón."
-      : "Tippe oben rechts auf <b>•••</b> (oder Teilen) und wähle <b>„In Safari öffnen“</b> – dann den Button antippen.";
-    if(isTikTok){
-      msg.innerHTML = es
-        ? "TikTok no puede abrir el App Store directamente.<br>Ábrelo en Safari:"
-        : "TikTok kann den App Store nicht direkt öffnen.<br>Bitte in Safari öffnen:";
-    } else {
-      msg.textContent = es ? "Toca el botón para abrir el App Store." : "Tippe auf den Button, um den App Store zu öffnen.";
-    }
+  var open=document.getElementById('open'), copy=document.getElementById('copy'),
+      msg=document.getElementById('msg'), steps=document.getElementById('steps'), copied=document.getElementById('copied');
+  open.href=HTTPS; if(es) open.textContent="Abrir en el App Store";
+
+  if(isTikTok){
+    // TikTok kann den App Store NICHT oeffnen -> kein Store-Button, nur Anleitung + Kopieren
+    open.style.display='none';
+    msg.innerHTML = es
+      ? "<b>Ya casi!</b> TikTok no puede abrir el App Store."
+      : "<b>Fast geschafft!</b> TikTok kann den App Store nicht öffnen.";
+    steps.style.display='block';
+    steps.innerHTML = es
+      ? "<ol><li>Toca arriba a la derecha en <b>•••</b></li><li>Elige <b>«Abrir en navegador / Safari»</b></li><li>Listo: ahí se abre el App Store</li></ol>"
+      : "<ol><li>Tippe oben rechts auf <b>•••</b></li><li>Wähle <b>„Im Browser öffnen / Safari“</b></li><li>Fertig – dort öffnet der App Store</li></ol>";
+    copy.style.display='inline-block';
+    if(es) copy.textContent="Copiar enlace";
+    copy.addEventListener('click', function(){
+      var done=function(){ copied.textContent = es?"¡Copiado! Pégalo en Safari.":"Kopiert! In Safari einfügen."; };
+      try{ navigator.clipboard.writeText(HTTPS).then(done, function(){ window.prompt(es?"Copia este enlace:":"Diesen Link kopieren:", HTTPS); }); }
+      catch(e){ window.prompt(es?"Copia este enlace:":"Diesen Link kopieren:", HTTPS); }
+    });
+  } else if(inApp){
+    // Instagram/FB oeffnen den Store ueber https problemlos
+    msg.textContent = es ? "Toca el botón para abrir el App Store." : "Tippe auf den Button, um den App Store zu öffnen.";
   } else {
     location.replace(HTTPS);
   }
