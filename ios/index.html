@@ -7,13 +7,13 @@
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:-apple-system,'DM Sans',sans-serif;background:linear-gradient(160deg,#F5A623,#B8661A);color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:26px}
-  .card{max-width:360px}
-  .ic{width:88px;height:88px;border-radius:22px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
-  .ic svg{width:46px;height:46px}
-  h1{font-size:30px;font-weight:800;letter-spacing:-.5px;margin-bottom:6px}
-  p{font-size:15px;opacity:.95;line-height:1.5;margin-bottom:18px}
+  .card{max-width:370px}
+  .ic{width:84px;height:84px;border-radius:22px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+  .ic svg{width:44px;height:44px}
+  h1{font-size:30px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
+  p{font-size:15px;opacity:.96;line-height:1.5;margin-bottom:18px}
   .btn{display:inline-block;background:#fff;color:#B8661A;font-weight:700;font-size:16px;padding:14px 26px;border-radius:14px;text-decoration:none;box-shadow:0 8px 22px rgba(0,0,0,.2)}
-  .hint{display:none;font-size:13.5px;opacity:.92;margin-top:20px;background:rgba(0,0,0,.16);padding:13px 15px;border-radius:12px;line-height:1.5}
+  .hint{display:none;font-size:14px;opacity:.96;margin-top:20px;background:rgba(0,0,0,.18);padding:14px 16px;border-radius:12px;line-height:1.55}
 </style>
 </head>
 <body>
@@ -26,24 +26,26 @@
 </div>
 <script>
   var HTTPS="https://apps.apple.com/app/id6770427542";
-  var ITMS="itms-apps://apps.apple.com/app/id6770427542";
   var ua=navigator.userAgent||"";
-  var inApp=/(TikTok|musical_ly|Instagram|FBAN|FBAV|FB_IAB|Line\/|Snapchat|Pinterest)/i.test(ua);
+  var isTikTok=/TikTok|musical_ly|BytedanceWebview|Bytedance/i.test(ua);
+  var inApp=isTikTok || /Instagram|FBAN|FBAV|FB_IAB|Line\/|Snapchat|Pinterest/i.test(ua);
   var es=(navigator.language||"de").toLowerCase().indexOf("es")===0;
   var open=document.getElementById('open'), msg=document.getElementById('msg'), hint=document.getElementById('hint');
-  if(es){ open.textContent="Abrir en el App Store"; }
+  open.href = HTTPS;
+  if(es) open.textContent="Abrir en el App Store";
   if(inApp){
-    // In-App-Browser: nicht auto-umleiten (würde 404 zeigen) – Anleitung geben
-    msg.textContent = es ? "Toca el botón para abrir el App Store." : "Tippe auf den Button, um den App Store zu öffnen.";
-    open.href = ITMS;
-    open.addEventListener('click', function(){ setTimeout(function(){ location.href=HTTPS; }, 600); });
     hint.style.display='block';
     hint.innerHTML = es
-      ? "¿No se abre? Toca arriba a la derecha en <b>•••</b> (o Compartir) y elige <b>«Abrir en Safari»</b>."
-      : "Öffnet sich nichts? Tippe oben rechts auf <b>•••</b> (oder Teilen) und wähle <b>„In Safari öffnen“</b>.";
+      ? "Toca arriba a la derecha en <b>•••</b> (o Compartir) y elige <b>«Abrir en Safari»</b>, luego abre el botón."
+      : "Tippe oben rechts auf <b>•••</b> (oder Teilen) und wähle <b>„In Safari öffnen“</b> – dann den Button antippen.";
+    if(isTikTok){
+      msg.innerHTML = es
+        ? "TikTok no puede abrir el App Store directamente.<br>Ábrelo en Safari:"
+        : "TikTok kann den App Store nicht direkt öffnen.<br>Bitte in Safari öffnen:";
+    } else {
+      msg.textContent = es ? "Toca el botón para abrir el App Store." : "Tippe auf den Button, um den App Store zu öffnen.";
+    }
   } else {
-    // Normaler Browser: direkt weiterleiten
-    open.href = HTTPS;
     location.replace(HTTPS);
   }
 </script>
