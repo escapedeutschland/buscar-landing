@@ -11,6 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://buscarpy.app/">
 <meta property="og:image" content="https://buscarpy.app/icon-512.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -96,6 +97,48 @@
 
   footer{text-align:center;margin-top:30px;font-size:12px;color:var(--text-3)}
   footer a{color:var(--text-2);text-decoration:none;border-bottom:1px solid var(--line)}
+
+  /* ===== Desktop / große Bildschirme – Handy-Ansicht (<900px) bleibt komplett unverändert ===== */
+  @media (min-width:900px){
+    .wrap{max-width:1080px;padding:0 40px 64px}
+    .topbar{padding:26px 8px 6px}
+    .brand-mini{font-size:26px}
+
+    /* Hero: zweispaltig – Text links, Screenshots rechts */
+    .stage{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center;margin-top:22px}
+    .hero{margin-top:0;text-align:left;padding:52px 46px;border-radius:34px;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+    .hero::before{width:320px;height:320px;top:-100px;right:-90px}
+    .hero::after{width:240px;height:240px;bottom:-110px;left:-70px}
+    .app-icon{width:104px;height:104px}
+    .app-name{font-size:58px;margin-top:16px}
+    .tagline{font-size:19px;margin-top:8px}
+    .lead{font-size:16px;margin-top:14px;max-width:460px}
+    .hero-cta{margin-top:26px;font-size:15px;padding:14px 30px}
+
+    /* Karussell: kein Randüberhang mehr, mittig in der rechten Spalte */
+    .carousel{margin:0;padding-top:8px;padding-bottom:8px}
+    .cphone{width:212px}
+    .cdots{margin-top:16px}
+
+    .sec-title{font-size:30px;margin:60px 0 22px}
+    .grid{grid-template-columns:repeat(4,1fr);gap:16px}
+    .tile{padding:22px 18px;border-radius:20px}
+    .tile .ic{width:48px;height:48px;border-radius:14px;margin-bottom:12px}
+    .tile .ic svg{width:24px;height:24px}
+    .tile .t{font-size:15.5px}
+    .tile .s{font-size:12.5px;margin-top:4px}
+
+    .biz{max-width:860px;margin:44px auto 0;padding:30px 34px;border-radius:24px}
+    .biz-head{font-size:22px}
+    .biz-points{flex-direction:row;flex-wrap:wrap;gap:16px;margin-top:18px}
+    .biz-row{flex:1 1 240px;background:rgba(255,255,255,.55);border-radius:14px;padding:12px 14px}
+
+    .dl{margin-top:62px}
+    .dl-title{font-size:30px}
+    .badges{flex-direction:row;justify-content:center;flex-wrap:wrap;gap:16px;align-items:stretch}
+    .webapp-btn{margin-top:0}
+    footer{margin-top:48px}
+  }
 </style>
 </head>
 <body>
@@ -109,6 +152,7 @@
     </div>
   </div>
 
+  <div class="stage">
   <section class="hero">
     <svg class="app-icon" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-label="Buscar">
       <defs><linearGradient id="ig" x1="0" y1="0" x2="1" y2="1">
@@ -130,6 +174,7 @@
     <div class="cslide"><div class="cphone"><img src="events.jpg" alt="Events" loading="lazy"></div><div class="ccap" data-cap="2"></div></div>
   </div>
   <div class="cdots" id="cdots"><i class="on"></i><i></i><i></i></div>
+  </div><!-- /.stage -->
 
   <div class="sec-title" data-i18n="sec_title">Was Buscar dir bietet</div>
   <div class="grid" id="grid-users"></div>
