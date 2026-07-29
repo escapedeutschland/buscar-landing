@@ -149,6 +149,7 @@
     <div class="lang" role="group" aria-label="Sprache / Idioma">
       <button id="btn-de" class="active" onclick="setLang('de')">DE</button>
       <button id="btn-es" onclick="setLang('es')">ES</button>
+      <button id="btn-en" onclick="setLang('en')">EN</button>
     </div>
   </div>
 
@@ -256,6 +257,18 @@
       ['nav','Ruta y llamada','Directo desde cada lugar'],
       ['trophy','Recompensas','Guarda favoritos y gana logros'],
       ['plus','Participa','Agrega lugares que falten']
+    ],
+    en:[
+      ['search','Find everything','Places, doctors, restaurants & services'],
+      ['map','Live map','All places at a glance'],
+      ['radar','Radar','Places near you – sorted by distance'],
+      ['calendar','Events','Free & ticketed – on the map'],
+      ['community','Ask the community','Ask questions & share answers'],
+      ['exchange','Exchange rates','Live rates from the exchange offices'],
+      ['star','Reviews','Stars, comments & photos'],
+      ['nav','Route & call','Straight from every listing'],
+      ['trophy','Rewards','Save favorites & earn achievements'],
+      ['plus','Join in','Add missing places yourself']
     ]
   };
   var BIZ={
@@ -264,11 +277,15 @@
         ['ticket','Eigene Events veranstalten – gratis oder mit Ticket']],
     es:[['store','Registra tu local o negocio gratis'],
         ['tag','Crea ofertas y atrae clientes'],
-        ['ticket','Organiza tus eventos – gratis o con entrada']]
+        ['ticket','Organiza tus eventos – gratis o con entrada']],
+    en:[['store','List your shop or business for free'],
+        ['tag','Create your own deals & attract customers'],
+        ['ticket','Host your own events – free or ticketed']]
   };
   var CAP={
     de:['Live-Karte – über 750 Orte in ganz Paraguay','Radar – Orte in deiner Nähe, nach Entfernung sortiert','Suchen & finden – Orte, Ärzte, Restaurants','Events entdecken – gratis & mit Ticket','Frag die Community – Fragen stellen & Antworten geben'],
-    es:['Mapa en vivo – más de 750 lugares en Paraguay','Radar – lugares cerca de ti, ordenados por distancia','Buscar y encontrar – lugares, médicos, etc.','Descubrir eventos – gratis y con entrada','Pregunta a la comunidad – pregunta y responde']
+    es:['Mapa en vivo – más de 750 lugares en Paraguay','Radar – lugares cerca de ti, ordenados por distancia','Buscar y encontrar – lugares, médicos, etc.','Descubrir eventos – gratis y con entrada','Pregunta a la comunidad – pregunta y responde'],
+    en:['Live map – over 750 places across Paraguay','Radar – places near you, sorted by distance','Search & find – places, doctors, restaurants','Discover events – free & ticketed','Ask the community – ask questions & answer']
   };
   var I18N={
     de:{tagline:'Entdecke Paraguay – Orte, Events & Angebote',
@@ -284,7 +301,14 @@
         biz_head:'¿Tienes un local o negocio?', biz_sub:'Hazlo visible – gratis.',
         dl_title:'Descárgala ahora', dl_sub:'Gratis para iPhone y Android',
         as_small:'Descárgalo en', gp_small:'Disponible en',
-        note:'Gratis para iPhone y Android.', privacy:'Privacidad'}
+        note:'Gratis para iPhone y Android.', privacy:'Privacidad'},
+    en:{tagline:'Discover Paraguay – places, events & deals',
+        lead:'Find your way around Paraguay – and make your business, events and deals visible.',
+        cta:'Download', sec_title:'What Buscar offers you', biz_tag:'For businesses',
+        biz_head:'Own a shop or business?', biz_sub:'Make it visible – for free.',
+        dl_title:'Download now', dl_sub:'Free for iPhone and Android',
+        as_small:'Download on the', gp_small:'Get it on',
+        note:'Free for iPhone and Android.', privacy:'Privacy'}
   };
 
   function renderGrid(l){
@@ -304,8 +328,9 @@
     var as=document.getElementById('appstore'); if(as) as.setAttribute('href','/ios?lang='+l);
     document.getElementById('btn-de').classList.toggle('active', l==='de');
     document.getElementById('btn-es').classList.toggle('active', l==='es');
+    document.getElementById('btn-en').classList.toggle('active', l==='en');
   }
-  setLang((navigator.language||'de').toLowerCase().indexOf('es')===0?'es':'de');
+  setLang((function(){var l=(navigator.language||'de').toLowerCase();return l.indexOf('de')===0?'de':(l.indexOf('en')===0?'en':'es');})());
 
   /* Coverflow-Effekt + Punkte */
   (function(){
