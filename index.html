@@ -190,8 +190,9 @@
     .lead{font-size:16px;margin-top:12px;max-width:640px;margin-left:auto;margin-right:auto}
     .hero-cta{margin-top:22px;font-size:15px;padding:14px 30px}
 
-    /* Handy-Galerie darunter, mittig, volle Breite */
-    .carousel{margin:22px 0 0;padding-top:10px;padding-bottom:8px}
+    /* Handy-Galerie darunter, mittig, volle Breite: bis zum Fensterrand durchlaufen
+       lassen (wie am Handy), damit das Folge-Handy nicht mitten auf der Seite abgeschnitten wird */
+    .carousel{margin:22px calc(50% - 50vw) 0;padding:10px calc(50vw - 120px) 8px;scroll-padding-inline:calc(50vw - 120px)}
     .cphone{width:212px}
     .cdots{margin-top:16px}
 
