@@ -106,7 +106,7 @@
   .cphone img{display:block;width:100%;border-radius:25px;aspect-ratio:945/2048;object-fit:cover}
   .ccap{margin-top:14px;font-size:12.5px;font-weight:600;color:var(--text-2);text-align:center;max-width:230px;transition:opacity .2s;min-height:34px}
   .cwrap{position:relative}
-  .cnext{display:none} /* Weiter-Pfeil nur in der Desktop-Ansicht */
+  .cnav{display:none} /* Blätter-Pfeile nur in der Desktop-Ansicht */
   .cdots{display:flex;justify-content:center;gap:7px;margin-top:2px}
   .cdots i{width:7px;height:7px;border-radius:50%;background:#E0D3BD;transition:.2s}
   .cdots i.on{background:var(--yellow);width:18px;border-radius:4px}
@@ -197,12 +197,16 @@
     .carousel{margin:22px calc(50% - 50vw) 0;padding:10px calc(50vw - 120px) 8px;scroll-padding-inline:calc(50vw - 120px)}
     .cphone{width:212px}
     .cdots{margin-top:16px}
-    .cnext{display:flex;align-items:center;justify-content:center;position:absolute;right:0;top:calc(50% - 24px);transform:translateY(-50%);
-      width:46px;height:46px;border-radius:50%;border:none;background:#fff;color:var(--yellow-deep);
-      box-shadow:0 8px 22px rgba(20,16,7,.22);cursor:pointer;z-index:5;transition:transform .15s,box-shadow .15s}
-    .cnext:hover{transform:translateY(-50%) scale(1.08);box-shadow:0 10px 26px rgba(20,16,7,.3)}
-    .cnext:active{transform:translateY(-50%) scale(.94)}
-    .cnext svg{width:20px;height:20px;stroke:currentColor;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    /* Blätter-Pfeile: bewusst dezent, damit sie die Galerie nicht überlagern */
+    .cnav{display:flex;align-items:center;justify-content:center;position:absolute;top:calc(50% - 24px);transform:translateY(-50%);
+      width:34px;height:34px;border-radius:50%;border:none;background:rgba(255,255,255,.72);color:var(--yellow-deep);
+      box-shadow:0 4px 12px rgba(20,16,7,.14);cursor:pointer;z-index:5;opacity:.55;
+      transition:opacity .15s,transform .15s,box-shadow .15s}
+    .cnav:hover{opacity:1;transform:translateY(-50%) scale(1.08);background:#fff;box-shadow:0 6px 16px rgba(20,16,7,.22)}
+    .cnav:active{transform:translateY(-50%) scale(.92)}
+    .cnav svg{width:15px;height:15px;stroke:currentColor;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .cnext{right:0}
+    .cprev{left:0}
 
     .sec-title{font-size:30px;margin:60px 0 22px}
     .grid{grid-template-columns:repeat(4,1fr);gap:16px}
@@ -272,7 +276,10 @@
     <div class="cslide"><div class="cphone"><img src="events.jpg" alt="Events" loading="lazy"></div><div class="ccap" data-cap="3"></div></div>
     <div class="cslide"><div class="cphone"><img src="community.jpeg" alt="Frag die Community" loading="lazy"></div><div class="ccap" data-cap="4"></div></div>
   </div>
-  <button class="cnext" id="cnext" type="button" aria-label="Nächstes Bild">
+  <button class="cnav cprev" id="cprev" type="button" aria-label="Vorheriges Bild">
+    <svg viewBox="0 0 24 24"><polyline points="15 6 9 12 15 18"/></svg>
+  </button>
+  <button class="cnav cnext" id="cnext" type="button" aria-label="Nächstes Bild">
     <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
   </button>
   </div><!-- /.cwrap -->
@@ -452,8 +459,9 @@
     }
     function center(i,smooth){var s=slides[i];var left=s.offsetLeft-(car.clientWidth-s.clientWidth)/2;car.scrollTo({left:left,behavior:smooth?'smooth':'auto'});}
     dots.forEach(function(dot,i){dot.style.cursor='pointer';dot.addEventListener('click',function(){center(i,true);});});
-    var nxt=document.getElementById('cnext');
+    var nxt=document.getElementById('cnext'), prv=document.getElementById('cprev');
     if(nxt){nxt.addEventListener('click',function(){center((cur+1)%slides.length,true);});}
+    if(prv){prv.addEventListener('click',function(){center((cur-1+slides.length)%slides.length,true);});}
     car.addEventListener('scroll',function(){requestAnimationFrame(update);},{passive:true});
     window.addEventListener('resize',function(){center(0,false);update();});
     function init(){center(0,false);update();}
