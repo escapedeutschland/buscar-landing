@@ -110,6 +110,7 @@
   .cdots i.on{background:var(--yellow);width:18px;border-radius:4px}
 
   /* 🎁 Gewinnspiel-Banner (versteckt bis Start; Konfetti rein per CSS) */
+  .giveaway-btn[hidden]{display:none} /* hidden-Attribut muss das display:flex schlagen */
   .giveaway-btn{position:relative;display:flex;align-items:center;justify-content:center;gap:12px;margin-top:14px;padding:16px 18px;border-radius:20px;text-decoration:none;overflow:hidden;
     background:linear-gradient(135deg,#F5A623 0%,#D4841A 60%,#B8661A 100%);color:#fff;box-shadow:0 14px 34px rgba(184,102,26,.35);animation:gwPulse 2.6s ease-in-out infinite}
   .giveaway-btn:active{transform:scale(.97)}
