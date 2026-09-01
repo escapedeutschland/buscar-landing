@@ -190,10 +190,12 @@
     .lead{font-size:16px;margin-top:12px;max-width:640px;margin-left:auto;margin-right:auto}
     .hero-cta{margin-top:22px;font-size:15px;padding:14px 30px}
 
-    /* Handy-Galerie darunter, mittig, volle Breite */
-    .carousel{margin:22px 0 0;padding-top:10px;padding-bottom:8px}
-    .cphone{width:212px}
-    .cdots{margin-top:16px}
+    /* Handy-Galerie: am Desktop ALLE 5 vollständig nebeneinander — kein Anschnitt, kein Scrollen */
+    .carousel{margin:22px 0 0;padding:10px 0 8px;overflow-x:visible;justify-content:center;gap:16px;perspective:none;scroll-snap-type:none}
+    .cslide{flex:0 0 auto}
+    .cphone{width:clamp(148px,15vw,186px);transform:none !important}
+    .ccap{opacity:1 !important;max-width:clamp(148px,15vw,186px);min-height:0}
+    .cdots{display:none}
 
     .sec-title{font-size:30px;margin:60px 0 22px}
     .grid{grid-template-columns:repeat(4,1fr);gap:16px}
