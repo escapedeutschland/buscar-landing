@@ -108,6 +108,14 @@
   .cwrap{position:relative}
   .cnav{display:none} /* Blätter-Pfeile nur in der Desktop-Ansicht */
   .cdots{display:flex;justify-content:center;gap:7px;margin-top:2px}
+
+  /* 📲 Sticky Download-CTA (nur mobil): erscheint nach dem Scrollen am Hero-Button vorbei,
+     verschwindet sobald die Store-Badges (#dl) im Bild sind */
+  .sticky-cta{position:fixed;left:16px;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);z-index:60;
+    display:flex;align-items:center;justify-content:center;padding:15px 24px;border-radius:999px;
+    background:linear-gradient(135deg,#F5A623 0%,#D4841A 100%);color:#fff;font-weight:700;font-size:15px;text-decoration:none;
+    box-shadow:0 12px 30px rgba(184,102,26,.42);transition:transform .25s ease,opacity .25s ease}
+  .sticky-cta.off{transform:translateY(90px);opacity:0;pointer-events:none}
   .cdots i{width:7px;height:7px;border-radius:50%;background:#E0D3BD;transition:.2s}
   .cdots i.on{background:var(--yellow);width:18px;border-radius:4px}
 
@@ -197,6 +205,7 @@
     .carousel{margin:22px calc(50% - 50vw) 0;padding:10px calc(50vw - 120px) 8px;scroll-padding-inline:calc(50vw - 120px)}
     .cphone{width:212px}
     .cdots{margin-top:16px}
+    .sticky-cta{display:none} /* Sticky-CTA nur mobil */
     /* Blätter-Pfeile: bewusst dezent, damit sie die Galerie nicht überlagern */
     .cnav{display:flex;align-items:center;justify-content:center;position:absolute;top:calc(50% - 24px);transform:translateY(-50%);
       width:34px;height:34px;border-radius:50%;border:none;background:rgba(255,255,255,.72);color:var(--yellow-deep);
@@ -319,6 +328,7 @@
 
   <footer>
     <div>© 2026 Buscar · <a href="https://escapedeutschland.github.io/buscar-app/privacy.html" data-i18n="privacy">Datenschutz</a></div>
+  <a class="sticky-cta off" id="stickyCta" href="#dl" data-i18n="cta">Zum Download</a>
   </footer>
 
 </div>
@@ -438,6 +448,17 @@
     document.getElementById('btn-en').classList.toggle('active', l==='en');
   }
   setLang((function(){var l=(navigator.language||'de').toLowerCase();return l.indexOf('de')===0?'de':(l.indexOf('en')===0?'en':'es');})());
+
+  /* 📲 Sticky-CTA: sichtbar sobald der Hero-Button aus dem Bild ist, weg sobald die Store-Badges (#dl) erscheinen */
+  (function(){
+    var cta=document.getElementById('stickyCta');
+    if(!cta || !('IntersectionObserver' in window)) return;
+    var heroBtn=document.querySelector('.hero-cta'), dl=document.getElementById('dl');
+    var heroVisible=true, dlVisible=false;
+    function upd(){ cta.classList.toggle('off', heroVisible || dlVisible); }
+    if(heroBtn) new IntersectionObserver(function(es){ es.forEach(function(e){ heroVisible=e.isIntersecting; }); upd(); },{threshold:0}).observe(heroBtn);
+    if(dl) new IntersectionObserver(function(es){ es.forEach(function(e){ dlVisible=e.isIntersecting; }); upd(); },{threshold:0.15}).observe(dl);
+  })();
 
   /* Coverflow-Effekt + Punkte */
   (function(){
