@@ -1,25 +1,157 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Buscar</title>
-  <meta name="robots" content="noindex, nofollow">
-  <link rel="icon" type="image/png" href="../favicon-32.png">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@900&family=DM+Sans:wght@500&display=swap" rel="stylesheet">
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:'DM Sans',sans-serif; background:linear-gradient(180deg,#F5A623 0%,#D4841A 100%); color:#fff; min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:24px; }
-    h1 { font-family:'Fraunces',Georgia,serif; font-weight:900; font-size:clamp(28px,7vw,44px); margin-bottom:10px; }
-    p { opacity:0.95; font-size:16px; }
-    a { color:#fff; font-weight:700; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Sorteo · Gewinnspiel | Buscar</title>
+<meta name="description" content="Sorteo Buscar: Samsung Galaxy A56 5G – bases y condiciones / Teilnahmebedingungen.">
+<meta name="theme-color" content="#F5A623">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow:#F5A623; --yellow-dark:#D4841A; --yellow-deep:#B8661A;
+    --bg:#F7F3EC; --card:#FFFFFF; --text-1:#1A1407; --text-2:#6B5E4A; --text-3:#A99C86; --line:#ECE2D0;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text-1);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:560px;margin:0 auto;padding:0 20px 44px}
+
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 2px 8px}
+  .brand-mini{font-family:'Fraunces',serif;font-weight:900;font-size:22px;color:var(--yellow-dark);letter-spacing:-0.5px;text-decoration:none}
+  .lang{display:flex;gap:4px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:3px;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+  .lang button{border:none;background:transparent;font-family:'DM Sans',sans-serif;font-weight:700;font-size:12px;color:var(--text-3);padding:6px 12px;border-radius:999px;cursor:pointer;transition:.15s}
+  .lang button.active{background:var(--yellow);color:#fff}
+
+  .hero{position:relative;margin-top:12px;border-radius:30px;padding:34px 26px 30px;text-align:center;color:#fff;overflow:hidden;
+        background:linear-gradient(160deg,#F5A623 0%,#D4841A 58%,#B8661A 100%);box-shadow:0 20px 50px rgba(184,102,26,.32)}
+  .hero::before{content:'';position:absolute;top:-70px;right:-60px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.10)}
+  .hero::after{content:'';position:absolute;bottom:-90px;left:-50px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.07)}
+  .hero .gift{font-size:44px;position:relative;z-index:1}
+  .hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(26px,7vw,36px);letter-spacing:-0.5px;margin-top:8px;position:relative;z-index:1;text-shadow:0 3px 12px rgba(0,0,0,.14)}
+  .hero .prize{font-size:15px;font-weight:700;margin-top:6px;position:relative;z-index:1;opacity:.97}
+  .hero .dates{display:inline-block;margin-top:14px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:7px 18px;font-size:13px;font-weight:700;position:relative;z-index:1}
+
+  .sec-title{font-family:'Fraunces',serif;font-weight:700;font-size:20px;text-align:center;margin:26px 0 14px}
+  .card{background:var(--card);border-radius:18px;padding:18px 18px;box-shadow:0 4px 16px rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.015);margin-bottom:12px}
+  .card h3{display:flex;align-items:center;gap:10px;font-size:14.5px;font-weight:700;margin-bottom:6px}
+  .card h3 .n{width:26px;height:26px;border-radius:50%;background:#FBEBD2;color:var(--yellow-deep);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0}
+  .card p, .card li{font-size:13.5px;color:var(--text-2)}
+  .card ol{padding-left:20px;margin-top:4px}
+  .card li{margin-bottom:3px}
+  .card b{color:var(--text-1)}
+  .note{font-size:11.5px;color:var(--text-3);text-align:center;margin-top:18px;line-height:1.5}
+  .foot{text-align:center;margin-top:22px}
+  .foot a{display:inline-flex;align-items:center;gap:8px;background:var(--yellow);color:#fff;font-weight:700;font-size:14px;padding:12px 22px;border-radius:14px;text-decoration:none;box-shadow:0 6px 18px rgba(245,166,35,.32)}
+  .l{display:none}
+</style>
 </head>
 <body>
-  <div>
-    <h1>🤫 Próximamente…<br>Bald geht's los…</h1>
-    <p>Algo se viene. / Hier passiert bald etwas.</p>
-    <p style="margin-top:18px"><a href="https://buscarpy.app">← buscarpy.app</a></p>
+<div class="wrap">
+
+  <div class="topbar">
+    <a class="brand-mini" href="https://buscarpy.app" translate="no">Buscar</a>
+    <div class="lang" role="group" aria-label="Sprache / Idioma">
+      <button id="btn-de" onclick="setLang('de')">DE</button>
+      <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
+      <button id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
   </div>
+
+  <section class="hero">
+    <div class="gift">🎁</div>
+    <h1><span class="l l-es">¡Gran Sorteo!</span><span class="l l-de">Großes Gewinnspiel!</span><span class="l l-en">Big Giveaway!</span></h1>
+    <div class="prize">Samsung Galaxy A56 5G · 256 GB · Awesome Graphite</div>
+    <div class="dates"><span class="l l-es">06/09 – 05/10/2026</span><span class="l l-de">06.09. – 05.10.2026</span><span class="l l-en">Sep 6 – Oct 5, 2026</span></div>
+  </section>
+
+  <!-- ══════════ ESPAÑOL ══════════ -->
+  <div class="l l-es">
+    <div class="sec-title">Bases y condiciones</div>
+    <div class="card"><h3><span class="n">1</span>Organizador</h3>
+      <p>Buscar – La guía para Paraguay (buscarpy.app). Contacto: Instagram <b translate="no">@buscar.paraguay</b>.</p></div>
+    <div class="card"><h3><span class="n">2</span>Período de participación</h3>
+      <p>Del <b>06/09/2026</b> hasta el <b>05/10/2026, 23:59 h</b> (hora de Paraguay).</p></div>
+    <div class="card"><h3><span class="n">3</span>Quién puede participar</h3>
+      <p>Personas mayores de 18 años con residencia en Paraguay. El sorteo es válido <b>únicamente dentro de Paraguay</b> y la entrega o el envío del premio se realiza <b>exclusivamente dentro de Paraguay</b>.</p></div>
+    <div class="card"><h3><span class="n">4</span>Cómo participar</h3>
+      <ol>
+        <li>Seguir a <b translate="no">@buscar.paraguay</b> en Instagram</li>
+        <li>Descargar <b>gratis</b> la app Buscar y crear una cuenta</li>
+        <li>Comentar tu <b>nombre de usuario de Buscar</b> debajo de la publicación del sorteo y etiquetar a 3 amigos reales</li>
+      </ol>
+      <p style="margin-top:6px">Solo son válidos los comentarios cuyo usuario de Buscar corresponde a una cuenta existente en la app.</p></div>
+    <div class="card"><h3><span class="n">5</span>Premio</h3>
+      <p><b>1 × Samsung Galaxy A56 5G, 256 GB, Awesome Graphite.</b> No canjeable por dinero. Un solo premio, un solo ganador.</p></div>
+    <div class="card"><h3><span class="n">6</span>Sorteo y notificación</h3>
+      <p>El ganador se elige por <b>sorteo aleatorio</b> el 06/10/2026 entre todas las participaciones válidas. Contacto por mensaje directo de Instagram. Sin respuesta en 7 días → nuevo sorteo.</p></div>
+    <div class="card"><h3><span class="n">7</span>Exclusiones y datos</h3>
+      <p>Cuentas falsas, bots y participaciones múltiples quedan excluidas. El usuario de Buscar comentado es visible públicamente; los datos se usan solo para realizar el sorteo.</p></div>
+    <p class="note">Este sorteo no está patrocinado, avalado ni administrado por Instagram/Meta y no está asociado a Instagram/Meta de ninguna manera.</p>
+    <div class="foot"><a href="https://buscarpy.app">Descargar Buscar gratis →</a></div>
+  </div>
+
+  <!-- ══════════ DEUTSCH ══════════ -->
+  <div class="l l-de">
+    <div class="sec-title">Teilnahmebedingungen</div>
+    <div class="card"><h3><span class="n">1</span>Veranstalter</h3>
+      <p>Buscar – Der Guide für Paraguay (buscarpy.app). Kontakt: Instagram <b translate="no">@buscar.paraguay</b>.</p></div>
+    <div class="card"><h3><span class="n">2</span>Teilnahmezeitraum</h3>
+      <p>Vom <b>06.09.2026</b> bis <b>05.10.2026, 23:59 Uhr</b> (Paraguay-Zeit).</p></div>
+    <div class="card"><h3><span class="n">3</span>Teilnahmeberechtigung</h3>
+      <p>Personen ab 18 Jahren mit Wohnsitz in Paraguay. Das Gewinnspiel gilt <b>ausschließlich innerhalb Paraguays</b>, und die Übergabe bzw. der Versand des Gewinns erfolgt <b>ausschließlich innerhalb Paraguays</b>.</p></div>
+    <div class="card"><h3><span class="n">4</span>Teilnahme</h3>
+      <ol>
+        <li><b translate="no">@buscar.paraguay</b> auf Instagram folgen</li>
+        <li>Die Buscar-App <b>kostenlos</b> herunterladen und ein Konto erstellen</li>
+        <li>Unter dem Gewinnspiel-Post deinen <b>Buscar-Nutzernamen</b> kommentieren und 3 echte Freunde markieren</li>
+      </ol>
+      <p style="margin-top:6px">Gültig sind nur Kommentare, deren Buscar-Nutzername zu einem existierenden Konto in der App gehört.</p></div>
+    <div class="card"><h3><span class="n">5</span>Gewinn</h3>
+      <p><b>1 × Samsung Galaxy A56 5G, 256 GB, Awesome Graphite.</b> Keine Barauszahlung. Ein Gewinn, ein Gewinner.</p></div>
+    <div class="card"><h3><span class="n">6</span>Ziehung &amp; Benachrichtigung</h3>
+      <p>Der Gewinner wird am 06.10.2026 per <b>Zufallsziehung</b> unter allen gültigen Teilnahmen ermittelt. Benachrichtigung per Instagram-Direktnachricht. Keine Antwort binnen 7 Tagen → Nachziehung.</p></div>
+    <div class="card"><h3><span class="n">7</span>Ausschluss &amp; Daten</h3>
+      <p>Fake-Konten, Bots und Mehrfachteilnahmen sind ausgeschlossen. Der kommentierte Buscar-Nutzername ist öffentlich sichtbar; Daten werden nur zur Durchführung des Gewinnspiels verwendet.</p></div>
+    <p class="note">Dieses Gewinnspiel steht in keiner Verbindung zu Instagram/Meta und wird in keiner Weise von Instagram/Meta gesponsert, unterstützt oder organisiert.</p>
+    <div class="foot"><a href="https://buscarpy.app">Buscar gratis laden →</a></div>
+  </div>
+
+  <!-- ══════════ ENGLISH ══════════ -->
+  <div class="l l-en">
+    <div class="sec-title">Terms &amp; conditions</div>
+    <div class="card"><h3><span class="n">1</span>Organizer &amp; entry</h3>
+      <p>Organized by Buscar (buscarpy.app), contact via Instagram <b translate="no">@buscar.paraguay</b>. Open to persons 18+ residing in Paraguay; the giveaway is <b>valid within Paraguay only</b> and the prize is <b>handed over or shipped within Paraguay only</b>. Entry from <b>Sep 6</b> to <b>Oct 5, 2026, 11:59 pm</b> (Paraguay time).</p></div>
+    <div class="card"><h3><span class="n">2</span>How to enter</h3>
+      <ol>
+        <li>Follow <b translate="no">@buscar.paraguay</b> on Instagram</li>
+        <li>Download the <b>free</b> Buscar app and create an account</li>
+        <li>Comment your <b>Buscar username</b> under the giveaway post and tag 3 real friends</li>
+      </ol>
+      <p style="margin-top:6px">Only comments whose Buscar username matches an existing account in the app are valid.</p></div>
+    <div class="card"><h3><span class="n">3</span>Prize &amp; draw</h3>
+      <p><b>1 × Samsung Galaxy A56 5G, 256 GB, Awesome Graphite</b> — no cash alternative. Winner drawn at random on Oct 6, 2026, notified via Instagram DM; a new winner is drawn if there is no response within 7 days.</p></div>
+    <div class="card"><h3><span class="n">4</span>Exclusions &amp; data</h3>
+      <p>Fake accounts, bots and multiple entries are excluded. The Buscar username posted in the comment is publicly visible; data is used solely to run the giveaway.</p></div>
+    <p class="note">This giveaway is not sponsored, endorsed or administered by, or associated with, Instagram/Meta.</p>
+    <div class="foot"><a href="https://buscarpy.app">Get Buscar for free →</a></div>
+  </div>
+
+</div>
+<script>
+  function setLang(l){
+    document.documentElement.lang = l;
+    document.querySelectorAll('.l').forEach(function(el){
+      el.style.display = el.classList.contains('l-'+l) ? (el.tagName==='SPAN' ? 'inline' : 'block') : 'none';
+    });
+    ['de','es','en'].forEach(function(x){ document.getElementById('btn-'+x).classList.toggle('active', x===l); });
+  }
+  setLang((function(){var l=(navigator.language||'es').toLowerCase();return l.indexOf('de')===0?'de':(l.indexOf('en')===0?'en':'es');})());
+</script>
 </body>
 </html>
